@@ -1,0 +1,83 @@
+--------------------------------app.js
+
+import React from "react";
+import './App.css';
+import ClassComponentWithProps, { ClassComponent } from "./classComponent";
+import GreetWithProps, { Greet } from "./greet";
+
+function App() {
+    const message = "Hello everyone";
+    const user = { name: 'Jagruthi', age: 19 };
+    
+    return (
+        <div className="App">
+            <Greet/>
+            <GreetWithProps name="Jagruthi" />
+            <ClassComponent/>
+            <ClassComponentWithProps message={message} user={user} />
+        </div>
+    );
+}
+export default App;
+
+
+
+
+
+
+
+-------------------------------------greet.js
+
+import React from "react";
+
+function Greet() {
+    return (
+        <div>
+            <h2>Hi this is functional component without props</h2>
+        </div>
+    );
+}
+function GreetWithProps(Props) {
+    return (
+        <div>
+            <h2>This is {Props.name}!</h2>
+            <h2>This is functional component with props</h2>
+            <hr></hr>
+        </div>
+    );
+}
+export default GreetWithProps;
+export { Greet };
+
+
+
+----------------------------------classComponent.js
+
+import React, { Component } from "react";
+
+class ClassComponent extends React.Component {
+    render() {
+        return (
+            <div>
+                <h2>This is class component without props</h2>
+            </div>
+        );
+    }
+}
+
+class ClassComponentWithProps extends Component {
+    render() {
+        const { message, user } = this.props;
+        return (
+            <div>
+                <h1>This is class component with props.</h1>
+                <p>{message}</p>
+                <p>Name: {user.name}</p>
+                <p>Age: {user.age}</p>
+            </div>
+        );
+    }
+}
+
+export { ClassComponent };
+export default ClassComponentWithProps;
