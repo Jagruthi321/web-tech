@@ -1,0 +1,65 @@
+------------------------------------app.js
+import React from 'react';
+import './App.css';
+import LifecycleDemo from './LifecycleDemo';
+
+function App() {
+  return (
+    <div className="App">
+      <LifecycleDemo />
+    </div>
+  );
+}
+
+export default App;
+
+
+
+--------------------------------------lifecycle.js
+import React, { Component } from 'react';
+
+class LifecycleDemo extends Component {
+  constructor(props) {
+    super(props);
+    console.log('Constructor: Initialize state');
+    this.state = { count: 0 };
+    this.increment = this.increment.bind(this);
+  }
+
+  componentDidMount() {
+    console.log('ComponentDidMount: Component mounted');
+    // Simulate API call or other initialization
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('ShouldComponentUpdate: Decide if component should update');
+    return true; // Returning true means the component should update
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('ComponentDidUpdate: Component updated');
+    // You can compare the previous and current state or props here
+  }
+
+  componentWillUnmount() {
+    console.log('ComponentWillUnmount: Cleanup before component is unmounted');
+    // Cleanup tasks like removing event listeners, canceling network requests
+  }
+
+  increment() {
+    this.setState({ count: this.state.count + 1 });
+  }
+
+  render() {
+    console.log('Render: Component render');
+    return (
+      <div>
+        <h2>React Lifecycle Methods Demo</h2>
+        <p>Count: {this.state.count}</p>
+        <button onClick={this.increment}>Increment</button>
+      </div>
+    );
+  }
+}
+
+export default LifecycleDemo;
