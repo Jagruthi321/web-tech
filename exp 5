@@ -1,0 +1,65 @@
+
+node index.js
+
+backend-index.js
+
+const express=require('express');
+const mongoose=require('mongoose');
+const app=express();
+app.use(express.urlencoded({extended:true}));
+async function connectDB(){
+    try{
+        await mongoose.connect('mongodb://localhost:27017/practice');
+        console.log('connected to database successfully');
+    }
+    catch(err){
+        console.log('Error connecting to database',err);
+    }
+}
+connectDB();
+
+const userSchema=mongoose.Schema({
+    name:String,
+    email:String,
+})
+const User=mongoose.model('users',userSchema);
+app.post('/post',async(req,res)=>{
+    try{
+        const {name,email}=req.body;
+        const user=new User({name,email});
+        let result=await user.save();
+        result=result.toObject();
+        console.log(result);
+        res.status(201).send("Form submitted successfully!!");
+    }
+    catch(err){
+        console.log(err);
+    }
+});
+
+app.listen(5000);
+
+
+frontend app.js
+import React from 'react';
+
+export default function App() {
+  
+
+  return (
+    <div>
+      <form
+        
+        action="http://localhost:5000/post"
+        method="POST"
+      >
+        <h2>Student Registration Form</h2>
+        Name:<br />
+        <input type="text" id="name" name="name"/><br />
+        Email:<br />
+        <input type="email" id="email" name="email"/><br />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+}
