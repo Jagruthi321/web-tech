@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Example</title>
+</head>
+<body>
+    <h1 id="header">Original Header</h1>
+    <p class="description">This is a description paragraph.</p>
+    <button id="changeTextButton" onclick="func()">Change Text</button>
+
+    <script>
+        // Select the elements
+        const header = document.getElementById('header');
+        const paragraph = document.querySelector('.description');
+        const button = document.getElementById('changeTextButton');
+
+        // Modify the header text
+        header.textContent = 'Modified Header';
+
+        // Modify the paragraph text
+        paragraph.textContent = 'This is the modified description paragraph.';
+
+        // Add an event listener to the button to change the text on click
+        
+        function func(){
+            header.textContent = 'again Modified Header';
+
+        }
+    </script>
+</body>
+</html>
