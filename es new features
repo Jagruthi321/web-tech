@@ -1,109 +1,98 @@
-----------ES5
-1.Strict Mode
-Strict mode helps catch common coding errors and unsafe actions such as defining global variables.
-"use strict";
-function strictFunction() {
-  // This will throw an error because x is not declared
-  // x = 3.14;
+------------es5.js
+
+// ES5 - Strict Mode
+'use strict';
+function strictModeExample() {
+    // x = 3.14; // Uncommenting this will cause an error because x is not declared
 }
-strictFunction();
+strictModeExample();
 
-2.JSON
-Built-in methods for parsing JSON strings into objects and stringifying objects into JSON strings.
-var jsonString = '{"name":"John", "age":30}';
-var obj = JSON.parse(jsonString);
-console.log(obj.name); // Output: John
-var newJsonString = JSON.stringify(obj);
-console.log(newJsonString); // Output: {"name":"John","age":30}
+// ES5 - JSON
+const jsonString = '{"name": "John", "age": 30}';
+const obj = JSON.parse(jsonString);
+console.log(obj.name); // John
 
-3.Object Methods
-Methods like Object.keys, Object.create introduced for more powerful object manipulation.
-var person = { name: 'John', age: 30 };
-// Object.keys
-var keys = Object.keys(person);
-console.log(keys); // Output: ['name', 'age']
-// Object.create
-var newPerson = Object.create(person);
-console.log(newPerson.name); // Output: John
+const newJsonString = JSON.stringify(obj);
+console.log(newJsonString); // '{"name":"John","age":30}'
 
-
----------------ES6
-1.Arrow Functions
-Provides a concise syntax for writing functions, with a lexical this binding.
-const add = (a, b) => a + b;
-console.log(add(2, 3)); // Output: 5
-2.Classes
-Introduces a more intuitive and OOP-friendly syntax for defining constructors and inheritance.
-class Person {
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
-  }
-
-  greet() {
-    return Hello, my name is ${this.name} and I am ${this.age} years old.;
-  }
-}
-
-const john = new Person('John', 30);
-console.log(john.greet()); // Output: Hello, my name is John and I am 30 years old.
-
-3.Template Literals
-Allows embedded expressions and multi-line strings, enhancing string manipulation.
-const name = 'John';
-const greeting = Hello, my name is ${name};
-console.log(greeting); // Output: Hello, my name is John
-
-4.Destructuring
-Enables unpacking values from arrays or properties from objects into distinct variables.
+// ES5 - Object Methods
 const person = {
-  name: 'John',
-  age: 30,
-  city: 'New York'
+    name: "Alice",
+    age: 25
 };
-const { name, age, city } = person;
-console.log(name, age, city); // Output: John 30 New York
-5.let and const
-let allows block-scoped variables, while const ensures variables are read-only.
-let x = 10;
-const y = 20;
-x = 15; // This is allowed
-console.log(x); // Output: 15
-// y = 25; // This will throw an error because y is a constant
-console.log(y); // Output: 20
+const keys = Object.keys(person);
+console.log(keys); // ['name', 'age']
+const values = Object.values(person);
+console.log(values); // ['Alice', 25]
+
+// ES6 - let and const
+let mutableVar = "I can be changed";
+const immutableVar = "I cannot be changed";
+
+// ES6 - Arrow Functions
+const add = (a, b) => a + b;
+console.log(add(2, 3)); // 5
+
+// ES6 - Classes
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+    speak() {
+        console.log(`${this.name} makes a noise.`);
+    }
+}
+const dog = new Animal('Dog');
+dog.speak(); // Dog makes a noise.
+
+// ES6 - Template Literals
+const greeting = `Hello, ${person.name}!`;
+console.log(greeting); // Hello, Alice!
+
+// ES6 - Destructuring
+const { name, age } = person;
+console.log(name); // Alice
+console.log(age); // 25
+
+// ES7 - Exponentiation Operator
+const squared = 3 ** 2;
+console.log(squared); // 9
+
+// ES8 - Object.entries and Object.values
+const entries = Object.entries(person);
+console.log(entries); // [['name', 'Alice'], ['age', 25]]
+const valuesES8 = Object.values(person);
+console.log(valuesES8); // ['Alice', 25]
+
+// ES8 - String Padding
+const paddedString = '5'.padStart(3, '0');
+console.log(paddedString); // 005
+
+// ES9 - Rest/Spread Properties
+// Expanding an array into individual elements
+var numbers = [1, 2, 3, 4, 5];
+const [first, second, ...rest] = numbers;
+console.log(first); // 1
+console.log(second); // 2
+console.log(rest); // [3, 4, 5]
+
+//spread
+const numbers = [1, 2, 3, 4, 5];
+const newNumbers = [...numbers, 6, 7, 8];
+console.log(newNumbers); // [1, 2, 3, 4, 5, 6, 7, 8]
 
 
------------------------ES7
-1.Exponentiation Operator
-Provides a more concise syntax for exponentiation.
-const squared = 2 ** 2;
-const cubed = 2 ** 3;
-console.log(squared); // Output: 4
-console.log(cubed); // Output: 8
+------index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Output</title>
+</head>
+<body>
+    <h1>Open the browser console to see the output</h1>
+    <script src="es5.js"></script>
+</body>
+</html>
 
-------------------------ES8
-1.Object.entries and Object.values
-Object.entries returns an array of a given object's own enumerable property [key, value] pairs, and Object.values returns an array of the object's values.
-const obj = { a: 1, b: 2 };
-const entries = Object.entries(obj); // [['a', 1], ['b', 2]]
-const values = Object.values(obj); // [1, 2]
-console.log(entries);
-console.log(values);
-2.String Padding
-padStart and padEnd allow padding of strings to a certain length with a specified character.
-const str = '5';
-console.log(str.padStart(2, '0')); // Output: '05'
-console.log(str.padEnd(2, '0')); // Output: '50'
-
-------------------------ES9
-1.Rest and Spread Properties
-Rest properties collect remaining object properties, while spread properties distribute object properties.
-// Rest properties
-const { a, ...rest } = { a: 1, b: 2, c: 3 };
-console.log(rest); // Output: { b: 2, c: 3 }
-
-// Spread properties
-const obj1 = { a: 1, b: 2 };
-const obj2 = { ...obj1, c: 3 };
-console.log(obj2); // Output: { a: 1, b: 2, c: 3 }
-These examples illustrate how each feature works and its use case in JavaScript development.
